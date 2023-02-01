@@ -11,9 +11,9 @@
   },
   "extends": [
     "standard",
+    "eslint:recommended",
     "plugin:react/recommended",
     "plugin:jsx-a11y/recommended",
-    "plugin:import/recommended",
     "plugin:react-hooks/recommended",
     "prettier"
   ],
@@ -30,7 +30,7 @@
     }
   },
   "parser": "@babel/eslint-parser",
-  "plugins": ["react", "jsx-a11y", "import", "react-hooks"],
+  "plugins": ["react", "jsx-a11y", "react-hooks", "prettier"],
   "rules": {
     "quotes": ["error", "single"],
     "eol-last": ["error", "always"],
