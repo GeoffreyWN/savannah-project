@@ -8,10 +8,14 @@ body {
 
 @layer components {
     .navlink-btn {
-        @apply text-gray-100 px-2 rounded-md text-base cursor-pointer font-semibold hover:shadow-sil-secondary hover:scale-110 hover:shadow-lg transition-all duration-200
+        @apply text-gray-100 px-2 rounded-md text-base cursor-pointer font-semibold hover:shadow-sil-secondary hover:scale-110 hover:shadow-lg transition-all duration-200 ease-in-out
     }
 
     .login-btn {
-        @apply bg-clip-text text-transparent bg-gradient-to-r from-pink-200 to-sil font-semibold border-2 border-sil-secondary rounded-lg py-2 px-6 animate-bounce hover:border-sil transition-all duration-300
+        @apply bg-clip-text text-transparent bg-gradient-to-r from-pink-200 to-sil font-semibold border-2 border-sil-secondary rounded-lg py-2 px-6 animate-bounce hover:border-sil transition-all duration-300 ease-in-out
+    }
+
+    .view-btn {
+        @apply py-1 px-4 rounded-md text-white font-semibold bg-gradient-to-r from-green-300 to-sil hover:from-sil hover:to-green-300 transition-all duration-300 ease-in-out
     }
 }

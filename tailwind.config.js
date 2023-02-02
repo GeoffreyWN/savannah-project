@@ -4,13 +4,14 @@ module.exports = {
   theme: {
     extend: {
       backgroundImage: {
-        'hero-one': 'url("../images/bgimage2.jpg")'
+        'hero-one': 'url("../images/bgimage1.jpg")',
+        'hero-two': 'url("../images/abstractbg.jpg")'
       },
       colors: {
         sil: {
           secondary: '#BADA55',
-          DEFAULT: '#0092FF',
-          accent: '#2c1e55'
+          dark: '#2C1E55',
+          DEFAULT: '#0092FF'
         }
       },
       fontFamily: {
