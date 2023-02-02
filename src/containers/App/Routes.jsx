@@ -2,7 +2,8 @@ import { lazy, Suspense } from 'react'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import { INDEX, LOGIN } from './RouteConstants'
 
-const Navbar = lazy(() => import('../../components/Navbar'))
+// const Navbar = lazy(() => import('../../components/Navbar'))
+// const Hero = lazy(() => import('../../components/Hero'))
 const LandingPage = lazy(() => import('../Landing'))
 const LoginPage = lazy(() => import('../Login'))
 const RequireAuth = lazy(() => import('./RequireAuth'))
@@ -13,7 +14,6 @@ const AppRoutes = () => {
   return (
     <Suspense fallback='loading'>
       <Router>
-        <Navbar />
         <Routes>
           <Route path={INDEX} element={<LandingPage />} />
           <Route path={LOGIN} element={<LoginPage />} />
