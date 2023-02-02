@@ -1,20 +1,20 @@
-import { NavLink } from 'react-router-dom'
+import { Link, NavLink } from 'react-router-dom'
 import { icons, images } from '../../assets/images'
-import { ALBUM, PHOTO, USER } from '../../containers/App/RouteConstants'
+import { ALBUM, HOME, INDEX, PHOTO } from '../../containers/App/RouteConstants'
 // import { ARR } from '@heroicons/react/outline'
 
 const Navbar = () => {
   return (
-    <nav>
+    <nav className='max-w-screen-xl w-full py-4 px-2 m-auto'>
       <div className=' mx-8 flex place-content-center'>
         {/* left div logo */}
         <div className='grow flex space-x-8 flex-wrap items-center'>
-          <div>
+          <Link to={INDEX}>
             <img src={images.logo} alt='login' className='w-25 h-20 mr-10' />
-          </div>
+          </Link>
 
-          <NavLink className='navlink-btn' to={USER}>
-            Users
+          <NavLink className='navlink-btn' to={HOME}>
+            Home
           </NavLink>
           <NavLink className='navlink-btn' to={ALBUM}>
             Album
