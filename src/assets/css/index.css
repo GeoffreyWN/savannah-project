@@ -32,7 +32,7 @@ body {
   animation: load7 1.8s infinite ease-in-out;
 }
 .loader {
-  color: #0092FF;
+  color: #2C1E55;
   font-size: 10px;
   margin: 80px auto;
   position: relative;
@@ -92,6 +92,12 @@ body {
         @apply py-1 px-4 rounded-md text-white font-semibold bg-gradient-to-r from-green-300 to-sil hover:from-sil font-montserrat hover:to-green-300 transition-all duration-300 ease-in-out
     }
     .explore-btn {
-        @apply  bg-clip-text text-transparent bg-gradient-to-r from-pink-200 to-sil font-semibold border-2 font-montserrat border-sil-secondary rounded-lg py-1 px-2 hover:border-sil-dark hover:scale-95  hover:bg-gradient-to-r hover:from-sil hover:to-pink-200 transition-all duration-300 ease-in-out
+        @apply  bg-clip-text text-transparent bg-gradient-to-r from-pink-300 to-purple-600 font-bold text-sm border-2 font-montserrat border-sil-secondary rounded-lg py-1 px-2 hover:border-sil-dark hover:scale-95  hover:bg-gradient-to-r hover:from-purple-600 hover:to-pink-300 hover:shadow-lg transition-all duration-300 ease-in-out
     }
+    .input-style {
+      @apply mt-2 py-2 px-3 outline-none text-gray-800 block w-full rounded-md focus:ring shadow-lg focus:ring-[#f4a774] focus:ring-opacity-50
+  }
+  .go-home-btn{
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-pink-200 to-sil font-semibold border-2 font-montserrat border-sil-secondary rounded-lg py-2 px-6 animate-bounce hover:border-sil transition-all duration-300 ease-in-out
+  }
 }
