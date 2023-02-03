@@ -11,11 +11,13 @@ import {
 } from '@heroicons/react/24/solid'
 
 import { TagIcon, KeyIcon, LightBulbIcon } from '@heroicons/react/24/outline'
+import { Link } from 'react-router-dom'
 
 const Loader = lazy(() => import('../Loader'))
 
-const SingleUser = ({ user }) => {
+const SingleUser = ({ user, albums }) => {
   const { name, username, email, address, phone, company } = user
+
   return (
     <>
       <Helmet>
@@ -84,29 +86,22 @@ const SingleUser = ({ user }) => {
                     Album
                   </h2>
 
-                  <div className='flex items-center cursor-pointer'>
-                    <BookmarkIcon className='h-5 w-5 text-purple-600 mr-4 ' />
-                    <span className='text-sil-dark mr-4'>{company?.name} </span>
-                    <button className='explore-btn'>explore</button>
-                  </div>
-
-                  <div className='flex items-center cursor-pointer'>
-                    <BookmarkIcon className='h-5 w-5 text-purple-600 mr-4 ' />
-                    <span className='text-sil-dark mr-4'>{company?.name} </span>
-                    <button className='explore-btn'>explore</button>
-                  </div>
-
-                  <div className='flex items-center cursor-pointer'>
-                    <BookmarkIcon className='h-5 w-5 text-purple-600 mr-4 ' />
-                    <span className='text-sil-dark mr-4'>{company?.name} </span>
-                    <button className='explore-btn'>explore</button>
-                  </div>
-
-                  <div className='flex items-center cursor-pointer'>
-                    <BookmarkIcon className='h-5 w-5 text-purple-600 mr-4 ' />
-                    <span className='text-sil-dark mr-4'>{company?.name} </span>
-                    <button className='explore-btn'>explore</button>
-                  </div>
+                  {albums.map(({ title, id: albumId }) => {
+                    return (
+                      <div
+                        key={albumId + title}
+                        className='flex items-center text-left justify-between cursor-pointer'
+                      >
+                        <BookmarkIcon className='h-5 w-5 text-purple-600 mr-4 ' />
+                        <span className='text-sil-dark mr-4'>
+                          {title.slice(0, 15) + '...'}
+                        </span>
+                        <Link to={`/albums/${albumId}`} className='explore-btn'>
+                          explore
+                        </Link>
+                      </div>
+                    )
+                  })}
                 </div>
               </div>
             </div>
@@ -118,7 +113,8 @@ const SingleUser = ({ user }) => {
 }
 
 SingleUser.propTypes = {
-  user: PropTypes.object
+  user: PropTypes.object,
+  albums: PropTypes.array
 }
 
 export default SingleUser

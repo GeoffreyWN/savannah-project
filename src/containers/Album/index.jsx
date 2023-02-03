@@ -1,40 +1,28 @@
-import { lazy, Suspense } from 'react'
+import { lazy, Suspense, useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { fetchSingleAlbum, selectAlbum, selectLoading } from '../Home/store'
+import { useParams } from 'react-router-dom'
 
 const Navbar = lazy(() => import('../../components/Navbar'))
 const Loader = lazy(() => import('../../components/Loader'))
 const SingleAlbum = lazy(() => import('../../components/SingleAlbum'))
 
 const Album = () => {
-  const album = {
-    id: 1,
-    name: 'Leanne Graham',
-    username: 'Bret',
-    email: 'Sincere@april.biz',
-    address: {
-      street: 'Kulas Light',
-      suite: 'Apt. 556',
-      city: 'Gwenborough',
-      zipcode: '92998-3874',
-      geo: {
-        lat: '-37.3159',
-        lng: '81.1496'
-      }
-    },
-    phone: '1-770-736-8031 x56442',
-    website: 'hildegard.org',
-    company: {
-      name: 'Romaguera-Crona',
-      catchPhrase: 'Multi-layered client-server neural-net',
-      bs: 'harness real-time e-markets'
-    }
-  }
+  const { albumId } = useParams()
+  const dispatch = useDispatch()
+  const loading = useSelector(selectLoading)
+  const album = useSelector(selectAlbum)
+
+  useEffect(() => {
+    dispatch(fetchSingleAlbum(albumId))
+  }, [dispatch, albumId])
 
   return (
     <Suspense fallback={<Loader />}>
       <div className='bg-hero-one w-full bg-repeat bg-cover bg-top h-80 '>
         <Navbar />
       </div>
-      <SingleAlbum album={album} />
+      {loading ? <Loader /> : <SingleAlbum album={album} />}
     </Suspense>
   )
 }
