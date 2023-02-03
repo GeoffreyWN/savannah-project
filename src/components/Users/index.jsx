@@ -2,6 +2,7 @@ import { lazy, Suspense } from 'react'
 import { Helmet } from 'react-helmet'
 
 const UserCard = lazy(() => import('../UserCard'))
+const Loader = lazy(() => import('../Loader'))
 
 const users = [
   {
@@ -242,7 +243,7 @@ const Users = () => {
       <Helmet>
         <title>SI | USERS</title>
       </Helmet>
-      <Suspense fallback='loading'>
+      <Suspense fallback={<Loader />}>
         <div className='max-w-screen-xl w-full p-2 m-auto'>
           <div className='text-center my-10'>
             <h1 className='font-extrabold font-montserrat text-5xl'>
