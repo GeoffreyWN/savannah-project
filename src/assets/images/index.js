@@ -3,5 +3,6 @@ export const icons = {
 }
 
 export const images = {
-    logo: require('./logo.png')
+    logo: require('./logo.png'),
+    avatar: require('./avatar1.jpg')
 }
