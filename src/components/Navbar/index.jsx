@@ -1,9 +1,30 @@
-import { Link, NavLink } from 'react-router-dom'
-import { icons, images } from '../../assets/images'
-import { ALBUM, HOME, INDEX, PHOTO } from '../../containers/App/RouteConstants'
-// import { ARR } from '@heroicons/react/outline'
+import { Link, useNavigate, NavLink } from 'react-router-dom'
+import { signOut } from 'firebase/auth'
+import { images } from '../../assets/images'
+import { INDEX, USERS } from '../../containers/App/RouteConstants'
+import {
+  RectangleGroupIcon,
+  ArrowLeftOnRectangleIcon,
+  ArrowRightOnRectangleIcon
+} from '@heroicons/react/24/outline'
+import { auth } from '../../firebase'
 
 const Navbar = () => {
+  const user = localStorage.getItem('user')
+  const isAuthenticated = user
+  const navigate = useNavigate()
+  const logOut = () => {
+    signOut(auth)
+      .then(() => {
+        console.log('Sign-out successful')
+        navigate('/')
+        localStorage.removeItem('user')
+      })
+      .catch((err) => {
+        console.log(err)
+      })
+  }
+
   return (
     <nav className='max-w-screen-xl w-full py-4 px-2 m-auto'>
       <div className=' mx-8 flex place-content-center'>
@@ -12,23 +33,30 @@ const Navbar = () => {
           <Link to={INDEX}>
             <img src={images.logo} alt='login' className='w-25 h-20 mr-10' />
           </Link>
-
-          <NavLink className='navlink-btn' to={HOME}>
-            Home
-          </NavLink>
-          <NavLink className='navlink-btn' to={ALBUM}>
-            Album
-          </NavLink>
-          <NavLink className='navlink-btn' to={PHOTO}>
-            Photo
-          </NavLink>
         </div>
 
         {/* right div btn */}
-        <div className='flex space-x-2 items-center  '>
-          <img src={icons.login} alt='login' className='w-5 h-5 cursor-pointer ' />
-          <span className='navlink-btn'>Login </span>
-        </div>
+
+        {isAuthenticated ? (
+          <div className='flex items-center space-x-6  '>
+            <NavLink className='navlink-btn' to={USERS}>
+              <RectangleGroupIcon className='h-6 w-6 text-sil' />
+              <span>Dashboard</span>
+            </NavLink>
+
+            <button onClick={logOut} className='navlink-btn'>
+              <ArrowRightOnRectangleIcon className='h-6 w-6 text-sil' />
+              <span>Sign Out</span>
+            </button>
+          </div>
+        ) : (
+          <div className='flex space-x-2 items-center  '>
+            <div className='navlink-btn'>
+              <ArrowLeftOnRectangleIcon className='h-5 w-5 text-sil transform -scale-x-100' />
+              <span>Login </span>
+            </div>
+          </div>
+        )}
       </div>
     </nav>
   )

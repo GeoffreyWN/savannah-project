@@ -1,10 +1,39 @@
 import { lazy, Suspense } from 'react'
 import { Helmet } from 'react-helmet'
+import { signInWithPopup, GoogleAuthProvider } from 'firebase/auth'
+import { auth, provider } from '../../firebase'
+
+import {} from '../Home/store'
+import { Link, useNavigate } from 'react-router-dom'
+import { USERS } from '../App/RouteConstants'
 
 const Navbar = lazy(() => import('../../components/Navbar'))
 const Loader = lazy(() => import('../../components/Loader'))
 
 const Landing = () => {
+  const user = localStorage.getItem('user')
+  const isAuthenticated = user
+
+  const navigate = useNavigate()
+  const signInWithGoogle = () => {
+    signInWithPopup(auth, provider)
+      .then((result) => {
+        const { email, displayName, photoURL } = result.user
+        const user = { email, displayName, photoURL }
+
+        localStorage.setItem('user', JSON.stringify(user))
+
+        navigate('/users')
+      })
+      .catch((error) => {
+        const errorCode = error.code
+        const errorMessage = error.message
+        const email = error.customData.email
+        const credential = GoogleAuthProvider.credentialFromError(error)
+        console.log(errorCode, errorMessage, email, credential)
+      })
+  }
+
   return (
     <>
       <Helmet>
@@ -23,17 +52,23 @@ const Landing = () => {
                 </span>{' '}
                 <span className='neonText'>TEAM</span>
               </h1>
-              <h2 className='leading-loose'>
+              <h2 className='leading-loose pb-8'>
                 We deliver interoperable, connected software solutions for healthcare
-                service providers and consumers.We deliver interoperable, connected
-                software solutions for healthcare service providers and consumers.We
+                service providers and consumers. We deliver interoperable, connected
+                software solutions for healthcare service providers and consumers. We
                 deliver interoperable, connected software solutions for healthcare service
                 providers and consumers...
               </h2>
 
-              <button type='button' className='login-btn'>
-                LOGIN
-              </button>
+              {isAuthenticated ? (
+                <button type='button' className='login-btn'>
+                  <Link to={USERS}>Go to Dashboard</Link>
+                </button>
+              ) : (
+                <button onClick={signInWithGoogle} type='button' className='login-btn'>
+                  LOGIN
+                </button>
+              )}
             </div>
           </div>
         </div>
