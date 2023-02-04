@@ -79,7 +79,7 @@ const SingleUser = ({ user, albums }) => {
 
               <div className='bg-red-50 rounded-xl space-y-6 px-6 py-4 '>
                 <h2 className='text-sil-dark text-xl font-montserrat font-semibold pb-3'>
-                  Album
+                  Albums
                 </h2>
 
                 {albums.map(({ title, id: albumId }) => {

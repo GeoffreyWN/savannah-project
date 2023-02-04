@@ -55,7 +55,6 @@ const Navbar = () => {
   const logOut = () => {
     signOut(auth)
       .then(() => {
-        console.log('Sign-out successful')
         navigate('/')
         notify()
         localStorage.removeItem('user')
