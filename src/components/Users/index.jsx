@@ -5,6 +5,7 @@ import { fetchUsers, selectLoading, selectUsers } from '../../containers/Home/st
 
 const UserCard = lazy(() => import('../UserCard'))
 const Loader = lazy(() => import('../../components/Loader'))
+const UserCardSkeleton = lazy(() => import('../../components/Skeletons/UserCardSkeleton'))
 
 const Users = () => {
   const dispatch = useDispatch()
@@ -33,7 +34,7 @@ const Users = () => {
           </div>
 
           {loading ? (
-            <Loader />
+            <UserCardSkeleton />
           ) : (
             <div className='mx-8 grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-y-8 gap-x-6 mt-10 md:mt-20 '>
               {users.map((user) => {

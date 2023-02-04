@@ -5,6 +5,9 @@ import { useParams } from 'react-router-dom'
 
 const Navbar = lazy(() => import('../../components/Navbar'))
 const Loader = lazy(() => import('../../components/Loader'))
+const SingleAlbumSkeleton = lazy(() =>
+  import('../../components/Skeletons/SingleAlbumSkeleton')
+)
 const SingleAlbum = lazy(() => import('../../components/SingleAlbum'))
 
 const Album = () => {
@@ -22,7 +25,7 @@ const Album = () => {
       <div className='bg-hero-one w-full bg-repeat bg-cover bg-top h-52 md:h-80 '>
         <Navbar />
       </div>
-      {loading ? <Loader /> : <SingleAlbum album={album} />}
+      {loading ? <SingleAlbumSkeleton /> : <SingleAlbum album={album} />}
     </Suspense>
   )
 }
