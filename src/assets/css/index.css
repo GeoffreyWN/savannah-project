@@ -81,7 +81,7 @@ body {
 
 @layer components {
     .navlink-btn {
-        @apply text-gray-100 flex space-x-2 items-center py-1 px-2 rounded-md text-base cursor-pointer font-montserrat font-semibold hover:shadow-sil-secondary hover:scale-110 hover:shadow-lg transition-all duration-200 ease-in-out
+        @apply text-gray-100 flex space-x-2 items-center py-1 px-2 rounded-md text-sm cursor-pointer font-montserrat font-semibold hover:shadow-sil-secondary hover:scale-110 hover:shadow-lg transition-all duration-200 ease-in-out
     }
 
     .login-btn {

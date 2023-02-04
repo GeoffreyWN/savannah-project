@@ -1,8 +1,10 @@
+/* eslint-disable jsx-a11y/click-events-have-key-events */
+/* eslint-disable jsx-a11y/no-static-element-interactions */
 import { Link, useNavigate, NavLink } from 'react-router-dom'
 import { Menu, Transition } from '@headlessui/react'
-import { Fragment } from 'react'
-// import {  } from '@heroicons/react/20/solid'
-import { signOut } from 'firebase/auth'
+import { Fragment, useEffect, useState } from 'react'
+import toast, { Toaster } from 'react-hot-toast'
+import { GoogleAuthProvider, signInWithPopup, signOut } from 'firebase/auth'
 import { images } from '../../assets/images'
 import { INDEX, USERS } from '../../containers/App/RouteConstants'
 import {
@@ -11,17 +13,51 @@ import {
   ArrowRightOnRectangleIcon,
   Bars3Icon
 } from '@heroicons/react/24/outline'
-import { auth } from '../../firebase'
+import { auth, provider } from '../../firebase'
 
 const Navbar = () => {
+  const navigate = useNavigate()
+
   const user = localStorage.getItem('user')
   const isAuthenticated = user
-  const navigate = useNavigate()
+
+  const userInfo = JSON.parse(user)
+  const [userPhoto, setUserPhoto] = useState()
+
+  useEffect(() => {
+    setUserPhoto(userInfo?.photoURL)
+  }, [userInfo])
+
+  const signInWithGoogle = () => {
+    signInWithPopup(auth, provider)
+      .then((result) => {
+        const { email, displayName, photoURL } = result.user
+        const user = { email, displayName, photoURL }
+
+        localStorage.setItem('user', JSON.stringify(user))
+
+        navigate('/users')
+      })
+      .catch((error) => {
+        const errorCode = error.code
+        const errorMessage = error.message
+        const email = error.customData.email
+        const credential = GoogleAuthProvider.credentialFromError(error)
+        console.log(errorCode, errorMessage, email, credential)
+      })
+  }
+
+  const notify = () =>
+    toast.success('Sign out successful!', {
+      duration: 6000,
+      position: 'bottom-center'
+    })
   const logOut = () => {
     signOut(auth)
       .then(() => {
         console.log('Sign-out successful')
         navigate('/')
+        notify()
         localStorage.removeItem('user')
       })
       .catch((err) => {
@@ -31,6 +67,7 @@ const Navbar = () => {
 
   return (
     <nav className='max-w-screen-xl md:w-full py-4 px-4 md:px-8 m-auto'>
+      <Toaster />
       <div className='flex items-center justify-between'>
         {/* left div logo */}
         <div>
@@ -46,13 +83,19 @@ const Navbar = () => {
             <div className='hidden md:flex items-center space-x-6   '>
               <NavLink className='navlink-btn' to={USERS}>
                 <RectangleGroupIcon className='h-6 w-6 text-sil' />
-                <span>Dashboard</span>
+                <span>Users</span>
               </NavLink>
 
               <button onClick={logOut} className='navlink-btn'>
                 <ArrowRightOnRectangleIcon className='h-6 w-6 text-sil' />
                 <span>Sign Out</span>
               </button>
+
+              <img
+                src={userPhoto}
+                alt='user'
+                className='rounded-full w-8 cursor-pointer'
+              />
             </div>
             <div className='md:hidden'>
               <div className='font-montserrat'>
@@ -103,6 +146,7 @@ const Navbar = () => {
                         <Menu.Item>
                           {({ active }) => (
                             <button
+                              onClick={logOut}
                               className={`${
                                 active ? 'bg-violet-500 text-white' : 'text-gray-900'
                               } group flex w-full items-center rounded-md px-2 py-2 text-sm`}
@@ -131,7 +175,7 @@ const Navbar = () => {
           </>
         ) : (
           <div className='flex space-x-2 items-center  '>
-            <div className='navlink-btn'>
+            <div onClick={signInWithGoogle} className='navlink-btn'>
               <ArrowLeftOnRectangleIcon className='h-5 w-5 text-sil transform -scale-x-100' />
               <span>Login </span>
             </div>

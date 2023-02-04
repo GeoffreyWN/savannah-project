@@ -61,7 +61,7 @@ const Landing = () => {
 
               {isAuthenticated ? (
                 <button type='button' className='login-btn'>
-                  <Link to={USERS}>Go to Dashboard</Link>
+                  <Link to={USERS}>Go to Users</Link>
                 </button>
               ) : (
                 <button onClick={signInWithGoogle} type='button' className='login-btn'>
