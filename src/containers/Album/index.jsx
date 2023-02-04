@@ -19,7 +19,7 @@ const Album = () => {
 
   return (
     <Suspense fallback={<Loader />}>
-      <div className='bg-hero-one w-full bg-repeat bg-cover bg-top h-80 '>
+      <div className='bg-hero-one w-full bg-repeat bg-cover bg-top h-52 md:h-80 '>
         <Navbar />
       </div>
       {loading ? <Loader /> : <SingleAlbum album={album} />}

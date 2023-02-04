@@ -16,7 +16,7 @@ const UserCard = ({ user }) => {
 
   return (
     <Link to={`/users/${userId}`}>
-      <div className='mb-36  hover:scale-105 transition-all duration-300 ease-in-out'>
+      <div className='mb-32 md:mb-36 hover:scale-105 transition-all duration-300 ease-in-out'>
         {/* image div */}
         <div className='rounded-md relative group cursor-pointer'>
           <img

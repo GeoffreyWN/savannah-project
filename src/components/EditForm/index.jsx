@@ -42,21 +42,23 @@ const EditForm = ({ photo, closeModal }) => {
         <XMarkIcon onClick={closeModal} className='h-8 w-8 pr-2' />
       </div>
 
-      <div className='flex text-sil-dark mx-auto mb-4'>
-        <PencilSquareIcon className='h-8 w-8 pr-2 ' />
-        <h2 className='text-2xl font-extrabold font-montserrat text-sil-dark text-center '>
+      <div className='flex items-center text-sil-dark mx-auto mb-4'>
+        <PencilSquareIcon className='h-8 w-8 pr-2 text-sil-dark font-extrabold' />
+        <h2 className='text-xl md:text-2xl font-extrabold font-montserrat text-sil-dark text-center '>
           Edit Photo Title
         </h2>
       </div>
 
       {updatedPhoto.title ? (
         <div className='flex flex-col text-center'>
-          <span className='font-semibold'>Update Successful!</span>
-          <span>{updatedPhoto.title}</span>
+          <span className=''>Update Successful!</span>
+          <span className='text-purple-500 font-semibold pt-2 motion-safe:animate-pulse'>
+            {updatedPhoto.title}
+          </span>
         </div>
       ) : null}
 
-      <div className='mt-8 max-w-lg mx-auto w-full '>
+      <div className='mt-2 md:mt-6 max-w-lg mx-auto w-full '>
         <form onSubmit={(e) => handleSubmit(e)}>
           <div className='w-full'>
             <label className='block text-left'>
@@ -72,7 +74,7 @@ const EditForm = ({ photo, closeModal }) => {
             </label>
           </div>
 
-          <div className=' pt-2 md:pt-6 pb-2 text-center'>
+          <div className=' pt-6 pb-2 text-center'>
             <button
               type='submit'
               className={`${

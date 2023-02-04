@@ -44,20 +44,19 @@ const Landing = () => {
         <div className='bg-hero-one w-full h-screen bg-repeat bg-cover bg-left '>
           <Navbar />
           <div className='max-w-screen-xl w-full p-2 m-auto'>
-            <div className='text-white px-10 mt-52 w-2/3 space-y-12'>
-              <h1 className='font-extrabold font-montserrat text-7xl'>
+            <div className='text-white px-4 md:px-10 mt-32 md:mt-52 w-full md:w-2/3 space-y-12'>
+              <h1 className='font-extrabold font-montserrat text-2xl md:text-7xl'>
                 <span className='neonText'>MEET THE</span>{' '}
                 <span className='bg-clip-text text-transparent bg-gradient-to-r from-pink-300 to-sil'>
                   ALPHA
                 </span>{' '}
                 <span className='neonText'>TEAM</span>
               </h1>
-              <h2 className='leading-loose pb-8'>
+              <h2 className='leading-7 md:leading-loose pb-8'>
                 We deliver interoperable, connected software solutions for healthcare
                 service providers and consumers. We deliver interoperable, connected
                 software solutions for healthcare service providers and consumers. We
-                deliver interoperable, connected software solutions for healthcare service
-                providers and consumers...
+                deliver interoperable, connected software soluti...
               </h2>
 
               {isAuthenticated ? (

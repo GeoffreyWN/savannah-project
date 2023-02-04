@@ -28,7 +28,7 @@ const User = () => {
 
   return (
     <Suspense fallback={<Loader />}>
-      <div className='bg-hero-one w-full bg-repeat bg-cover bg-top h-80 '>
+      <div className='bg-hero-one w-full bg-repeat bg-cover bg-top h-48 md:h-80 '>
         <Navbar />
       </div>
       {loading ? <Loader /> : <SingleUser user={user} albums={albums} />}

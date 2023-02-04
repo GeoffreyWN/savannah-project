@@ -49,12 +49,12 @@ const SingleAlbum = ({ album }) => {
         <title>SI | ALBUM</title>
       </Helmet>
       <Suspense fallback={<Loader />}>
-        <div className='max-w-screen-xl w-full px-8 m-auto'>
+        <div className='max-w-screen-xl w-full px-6 md:px-8 m-auto'>
           <div className='flex space-x-16 '>
-            <div className=' -mt-20 mx-auto p-10 mb-10 w-full bg-white rounded-xl shadow-xl'>
+            <div className=' -mt-20 mx-auto p-4 md:p-10 mb-10 w-full bg-white rounded-xl shadow-xl'>
               <div className='flex items-center '>
                 <BookmarkIcon className='h-10 w-10 text-purple-600 mr-3 ' />
-                <span className='font-extrabold font-montserrat text-sil-dark text-3xl'>
+                <span className='font-extrabold font-montserrat text-sil-dark text-xl md:text-3xl'>
                   <span className='mr-3 bg-clip-text text-transparent bg-gradient-to-r from-pink-300 to-sil'>
                     Album {albumId} :
                   </span>
@@ -65,7 +65,7 @@ const SingleAlbum = ({ album }) => {
               {loading ? (
                 <Loader />
               ) : (
-                <div className='mx-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-y-8 gap-x-6 mt-20 '>
+                <div className='mx-2 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-y-8 gap-x-6 mt-12 md:mt-20 '>
                   {photos.map((item) => {
                     return (
                       <div key={item.id}>
